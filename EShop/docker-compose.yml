@@ -23,7 +23,7 @@ services:
       - mynetwork
 
   web:
-    build: ../FE/khoaht3-eshop
+    build: ../khoaht3-eshop
     ports:
       - 3002:3000
     environment:
