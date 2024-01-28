@@ -2,7 +2,7 @@
 // const port = "7241"
 const port = "5000"
 
-const baseUrl = `http://184.72.175.233:${port}/api/`
+const baseUrl = `http://54.162.225.95:${port}/api/`
 
 const apiLinks = {
     auth: {

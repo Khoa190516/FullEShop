@@ -42,10 +42,12 @@ namespace BussinesLayer.Service.Services
 
             var newCustomer = new Customer()
             {
+                Id = Guid.NewGuid(),
                 Email = userRegisterModel.Email,
                 UserName = userRegisterModel.UserName,
                 FirstName = userRegisterModel.FullName.Split(' ').First(),
                 LastName = userRegisterModel.FullName.Split(' ').Last(),
+                BirthDate = DateTime.UtcNow,
                 Password = HashHandler.HashPassword(userRegisterModel.Password),
             };
 

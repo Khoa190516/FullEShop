@@ -3,8 +3,10 @@
     "",
     "\\EShop",
     "\\EShop\\EShopAPI",
-    "\\khoaht3-eshop"
+    "\\khoaht3-eshop",
+    "\\khoaht3-eshop\\src",
+    "\\khoaht3-eshop\\src\\Commons"
   ],
-  "SelectedNode": "\\EShop\\docker-compose.yml",
+  "SelectedNode": "\\khoaht3-eshop\\src\\Commons\\ApiEndpoints.ts",
   "PreviewInSolutionExplorer": false
 }
