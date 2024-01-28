@@ -25,7 +25,7 @@ namespace TestGetProducts
             expected.SetOk(apiResponseResult);
 
 
-            mock.Setup(x => x.GetProducts(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(expected);
+            mock.Setup(x => x.SearchProducts(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(expected);
 
             //Act
             var result = controller.GetProducts(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>());

@@ -13,9 +13,9 @@ namespace ApplicationContextLayer.Configuration
     {
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
-            builder
-                .Property(e => e.Id)
-                .ValueGeneratedOnAdd();
+            //builder
+            //    .Property(e => e.Id)
+            //    .ValueGeneratedOnAdd();
         }
     }
 }

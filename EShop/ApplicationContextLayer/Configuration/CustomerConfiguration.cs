@@ -13,9 +13,9 @@ namespace ApplicationContextLayer.Configuration
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder
-               .Property(e => e.Id)
-               .ValueGeneratedOnAdd();
+            //builder
+            //   .Property(e => e.Id)
+            //   .ValueGeneratedOnAdd();
 
             builder.HasOne(customer => customer.Cart)
                 .WithOne(cart => cart.Customer)

@@ -4,6 +4,11 @@ using BussinesLayer.ResponseModels.ApiResponseModel;
 using BussinesLayer.Service.IServices;
 using DataAccessLayer.UnitOfWork;
 using DomainLayer.Entities;
+using DomainLayer.RequestModels.Branch;
+using DomainLayer.RequestModels.Category;
+using DomainLayer.RequestModels.Product;
+using DomainLayer.ResponseModel.Branch;
+using DomainLayer.ResponseModel.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +55,7 @@ namespace BussinesLayer.Service.Services
             return response;
         }
 
-        public async Task<ApiResponse> GetProducts(string? name, string? category, string? branch, int pageIndex, int pageSize)
+        public async Task<ApiResponse> SearchProducts(string? name, string? category, string? branch, int pageIndex, int pageSize)
         {
             var listProductEntities = await _unitOfWork.ProductRepository.SearchProducts(name, category, branch);
 
@@ -81,6 +86,100 @@ namespace BussinesLayer.Service.Services
             var paginatedProducts = products.Paginate(pageIndex, pageSize);
 
             return new ApiResponse().SetOk(paginatedProducts);
+        }
+
+        public async Task<ApiResponse> AddBranch(BranchAddModel model)
+        {
+            var response = new ApiResponse();
+
+            var branch = new Branch
+            {
+                Id = Guid.NewGuid(),
+                BranchName = model.BranchName,
+            };
+
+            await _unitOfWork.BranchRepository.AddAsync(branch);
+            await _unitOfWork.SaveChangeAsync();
+
+            response.SetOk(branch);
+
+            return response;
+        }
+
+        public async Task<ApiResponse> AddCategory(CategoryAddModel model)
+        {
+            var response = new ApiResponse();
+
+            var category = new Category
+            {
+                Id = Guid.NewGuid(),
+                CategoryName = model.CategoryName,
+            };
+
+            await _unitOfWork.CategoryRepository.AddAsync(category);
+            await _unitOfWork.SaveChangeAsync();
+
+            response.SetOk(category);
+
+            return response;
+        }
+
+        public async Task<ApiResponse> GetCategories()
+        {
+            var response = new ApiResponse();
+
+            var categoryEntities = await _unitOfWork.CategoryRepository.GetAllAsync(null);
+            categoryEntities ??= new List<Category>();
+
+            List<CategoryViewModel> categories = categoryEntities.Select(x => new CategoryViewModel
+            {
+                Id = x.Id,
+                CategoryName = x.CategoryName,
+            }).ToList();
+
+            response.SetOk(categories);
+
+            return response;
+        }
+
+        public async Task<ApiResponse> GetBranches()
+        {
+            var response = new ApiResponse();
+
+            var branchEntities = await _unitOfWork.BranchRepository.GetAllAsync(null);
+            branchEntities ??= new List<Branch>();
+
+            List<BranchViewModel> branches = branchEntities.Select(x => new BranchViewModel
+            {
+                Id = x.Id,
+                BranchName = x.BranchName,
+            }).ToList();
+
+            response.SetOk(branches);
+
+            return response;
+        }
+
+        public async Task<ApiResponse> AddProduct(ProductAddModel model)
+        {
+            Product newProduct = new()
+            {
+                Id = Guid.NewGuid(),
+                Title = model.Title,
+                Description = model.Description,
+                Price = model.Price,
+                Stock = model.Stock,
+                DiscountPercentage = model.DiscountPercentage,
+                Rating = model.Rating,
+                Thumbnail = model.Thumbnail,
+                CategoryId = model.CategoryId,
+                BranchId = model.BranchId,
+                Images = model.Images,
+            };
+
+            await _unitOfWork.ProductRepository.AddAsync(newProduct);
+            await _unitOfWork.SaveChangeAsync();
+            return new ApiResponse().SetOk("Created");
         }
     }
 }

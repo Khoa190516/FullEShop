@@ -52,7 +52,7 @@ namespace EShopAPI
 
             builder.Services.AddDbContext<ApplicationContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("AWSConnection"));
+                options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresLocalConnection"));
             });
 
             // Add CORS

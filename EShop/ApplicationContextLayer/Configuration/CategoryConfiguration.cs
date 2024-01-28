@@ -13,23 +13,23 @@ namespace ApplicationContextLayer.Configuration
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder
-                .Property(e => e.Id)
-                .ValueGeneratedOnAdd();
+            //builder
+            //    .Property(e => e.Id)
+            //    .ValueGeneratedOnAdd();
 
-            builder
-                .HasData(
-                    new Category()
-                    {
-                        Id = Guid.Parse("61cff61b-a84a-4002-b8dc-029cafc60408"),
-                        CategoryName = "Smart Phone"
-                    },
-                    new Category()
-                    {
-                        Id = Guid.Parse("d1f44292-46b0-4ca3-a38a-020ce138c88b"),
-                        CategoryName = "Laptop"
-                    }
-                );
+            //builder
+            //    .HasData(
+            //        new Category()
+            //        {
+            //            Id = Guid.Parse("61cff61b-a84a-4002-b8dc-029cafc60408"),
+            //            CategoryName = "Smart Phone"
+            //        },
+            //        new Category()
+            //        {
+            //            Id = Guid.Parse("d1f44292-46b0-4ca3-a38a-020ce138c88b"),
+            //            CategoryName = "Laptop"
+            //        }
+            //    );
         }
     }
 }
