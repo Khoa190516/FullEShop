@@ -40,14 +40,14 @@ services:
     networks:
       - mynetwork
 
-  web:
-    build: ../khoaht3-eshop
-    ports:
-      - 3002:3000
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    networks:
-      - mynetwork
+  # web:
+  #   build: ../khoaht3-eshop
+  #   ports:
+  #     - 3002:3000
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   networks:
+  #     - mynetwork
 
 volumes:
   pg_data:
